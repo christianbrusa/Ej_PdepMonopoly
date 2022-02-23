@@ -8,6 +8,11 @@ class Personaje {
     this.propiedades = propiedades;
     this.acciones = acciones;
   }
+  
+  pasarPorElBanco(){
+    this.dinero += 40;
+    this.tactica = "Comprador compulsivo";
+  }
 }
 
 //Creando personajes
