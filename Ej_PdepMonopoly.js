@@ -30,7 +30,11 @@ const jugador1 = new Personaje("Carolina", 500, "Accionista", {},
         	 this.dinero -= 100;
         }
     });
-const jugador2 = new Personaje("Manuel", 500, "Oferente singular", {},"");
+const jugador2 = new Personaje("Manuel", 500, "Oferente singular", {},
+		function enojarse(){
+				this.dinero += 50;
+				jugador2.gritar();
+		});
 
 
 
