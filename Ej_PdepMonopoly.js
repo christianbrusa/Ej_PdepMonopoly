@@ -13,6 +13,11 @@ class Personaje {
     this.dinero += 40;
     this.tactica = "Comprador compulsivo";
   }
+  
+  gritar(){
+  let nuevoNombre = "AHHHH" + this.nombre;
+  this.nombre = nuevoNombre;
+  }
 }
 
 //Creando personajes
