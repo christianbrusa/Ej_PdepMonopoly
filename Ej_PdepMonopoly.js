@@ -9,3 +9,18 @@ class Personaje {
     this.acciones = acciones;
   }
 }
+
+//Creando personajes
+const jugador1 = new Personaje("Carolina", 500, "Accionista", {},"");
+const jugador2 = new Personaje("Manuel", 500, "Oferente singular", {},"");
+
+
+
+
+
+
+
+
+
+
+
