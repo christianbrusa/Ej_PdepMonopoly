@@ -21,7 +21,15 @@ class Personaje {
 }
 
 //Creando personajes
-const jugador1 = new Personaje("Carolina", 500, "Accionista", {},"");
+const jugador1 = new Personaje("Carolina", 500, "Accionista", {},
+    function pagarAAccionistas() {
+				if(this.tactica === "Accionista"){
+           this.dinero += 200;
+        }
+  			else{
+        	 this.dinero -= 100;
+        }
+    });
 const jugador2 = new Personaje("Manuel", 500, "Oferente singular", {},"");
 
 
