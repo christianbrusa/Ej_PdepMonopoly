@@ -43,17 +43,16 @@ class Personaje {
         })
     }
 
-    hacerBerrinchePor(propiedad){
+    hacerBerrinchePor(propiedad) {
         this.dinero += 10;
         this.gritar();
         let filtro = x => x.nombre === propiedad;
         let posicion = _.findIndex(propiedades, filtro);
-            while(this.dinero < propiedades[posicion].precio){
-                this.dinero += 10;
-                console.log("+ $10 para llegar a comprar la propiedad");
-            }
-        if(this.dinero >= propiedades[posicion].precio){
-
+        while (this.dinero < propiedades[posicion].precio) {
+            this.dinero += 10;
+            console.log("+ $10 para llegar a comprar la propiedad");
+        }
+        if (this.dinero >= propiedades[posicion].precio) {
             this.propiedades.push(propiedades[posicion]);
             this.dinero -= propiedades[posicion].precio;
             propiedades[posicion].disponible = false;
