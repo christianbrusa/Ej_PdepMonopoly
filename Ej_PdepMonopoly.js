@@ -32,6 +32,16 @@ class Personaje {
             propiedades[posicion].disponible = false;
         }
     }
+
+    cobrarAlquileres() {
+        this.propiedades.forEach(prop => {
+            if (prop.precio < 150) {
+                this.dinero += 10;
+            } else {
+                this.dinero += 20;
+            }
+        })
+    }
 }
 
 //Creando personajes
@@ -53,9 +63,13 @@ const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [],
 );
 
 
-jugador1.subastar("El Muelle")
-jugador1.subastar("Avenida Vermont")
-jugador1.subastar("Avenida Nueva York")
-console.log(jugador1)
-jugador2.subastar("Avenida Estados")
-console.log(jugador2)
+jugador1.subastar("El Muelle");
+jugador1.subastar("Avenida Vermont");
+jugador1.subastar("Avenida Nueva York");
+jugador2.subastar("Avenida Estados");
+console.log(jugador1);
+console.log(jugador2);
+jugador1.cobrarAlquileres();
+jugador2.cobrarAlquileres();
+console.log(jugador1);
+console.log(jugador2);
