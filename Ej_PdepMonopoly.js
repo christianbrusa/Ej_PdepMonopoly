@@ -42,6 +42,23 @@ class Personaje {
             }
         })
     }
+
+    hacerBerrinchePor(propiedad){
+        this.dinero += 10;
+        this.gritar();
+        let filtro = x => x.nombre === propiedad;
+        let posicion = _.findIndex(propiedades, filtro);
+            while(this.dinero < propiedades[posicion].precio){
+                this.dinero += 10;
+                console.log("+ $10 para llegar a comprar la propiedad");
+            }
+        if(this.dinero >= propiedades[posicion].precio){
+
+            this.propiedades.push(propiedades[posicion]);
+            this.dinero -= propiedades[posicion].precio;
+            propiedades[posicion].disponible = false;
+        }
+    }
 }
 
 //Creando personajes
@@ -65,11 +82,13 @@ const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [],
 
 jugador1.subastar("El Muelle");
 jugador1.subastar("Avenida Vermont");
-jugador1.subastar("Avenida Nueva York");
-jugador2.subastar("Avenida Estados");
-console.log(jugador1);
-console.log(jugador2);
+//jugador1.subastar("Avenida Nueva York");
+//jugador2.subastar("Avenida Estados");
+//console.log(jugador1);
+//console.log(jugador2);
 jugador1.cobrarAlquileres();
-jugador2.cobrarAlquileres();
+//jugador2.cobrarAlquileres();
 console.log(jugador1);
-console.log(jugador2);
+//console.log(jugador2);
+jugador1.hacerBerrinchePor("Avenida Pensylvania");
+console.log(jugador1);
