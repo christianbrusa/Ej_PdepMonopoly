@@ -50,7 +50,7 @@ class Personaje {
         let posicion = _.findIndex(propiedades, filtro);
         while (this.dinero < propiedades[posicion].precio) {
             this.dinero += 10;
-            console.log("+ $10 para llegar a comprar la propiedad");
+            //console.log("+ $10 para llegar a comprar la propiedad");
         }
         if (this.dinero >= propiedades[posicion].precio) {
             this.propiedades.push(propiedades[posicion]);
@@ -79,15 +79,28 @@ const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [],
 );
 
 
-jugador1.subastar("El Muelle");
-jugador1.subastar("Avenida Vermont");
-//jugador1.subastar("Avenida Nueva York");
-//jugador2.subastar("Avenida Estados");
-//console.log(jugador1);
-//console.log(jugador2);
-jugador1.cobrarAlquileres();
-//jugador2.cobrarAlquileres();
-console.log(jugador1);
-//console.log(jugador2);
-jugador1.hacerBerrinchePor("Avenida Pensylvania");
-console.log(jugador1);
+function últimaRonda(jugador1, jugador2) {
+    jugador1.acciones();
+    jugador1.subastar("El Muelle");
+    jugador1.subastar("Avenida Vermont");
+    jugador1.pasarPorElBanco();
+    jugador1.cobrarAlquileres();
+    jugador1.hacerBerrinchePor("Avenida Pensylvania");
+
+    jugador2.acciones();
+    jugador2.subastar("Avenida Indiana");
+    jugador2.subastar("Avenida Vermont");
+    jugador2.pasarPorElBanco();
+    jugador2.cobrarAlquileres();
+    jugador2.hacerBerrinchePor("Plaza Park");
+
+    console.log(jugador1);
+    console.log(jugador2);
+
+    if (jugador1.dinero > jugador2.dinero) {
+        return jugador1.nombre;
+    } else {
+        return jugador2.nombre;
+    }
+}
+últimaRonda(jugador1, jugador2);
