@@ -11,11 +11,6 @@ class Personaje {
         this.acciones = acciones;
     }
 
-    pasarPorElBanco() {
-        this.dinero += 40;
-        this.tactica = "Comprador compulsivo";
-    }
-
     gritar() {
         let nuevoNombre = "AHHHH" + this.nombre;
         this.nombre = nuevoNombre;
@@ -66,6 +61,14 @@ class Propiedad {
         this.nombre = nombre;
         this.precio = precio;
         this.disponibilidad = disponibilidad;
+    }
+}
+
+//Modelando las diferentes acciones
+const pasarPorElBanco = {
+    ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
+        jugador.dinero += 40;
+        jugador.tactica = "Comprador compulsivo";
     }
 }
 
