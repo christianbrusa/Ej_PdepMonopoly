@@ -113,3 +113,14 @@ Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
 function últimaRonda(jugador) {
     return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedad12, propiedad13));
 }
+
+function juegoFinal(jugador1, jugador2) {
+    ultimaRonda(jugador1);
+    ultimaRonda(jugador2);
+    if (jugador1.dinero > jugador2.dinero) {
+        return jugador1;
+    } else {
+        return jugador2;
+    }
+}
+juegoFinal(jugador1, jugador2);
