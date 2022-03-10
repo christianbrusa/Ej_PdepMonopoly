@@ -10,22 +10,6 @@ class Personaje {
         this.propiedades = propiedades;
         this.acciones = acciones;
     }
-
-    hacerBerrinchePor(propiedad) {
-        this.dinero += 10;
-        this.gritar();
-        let filtro = x => x.nombre === propiedad;
-        let posicion = _.findIndex(propiedades, filtro);
-        while (this.dinero < propiedades[posicion].precio) {
-            this.dinero += 10;
-            //console.log("+ $10 para llegar a comprar la propiedad");
-        }
-        if (this.dinero >= propiedades[posicion].precio) {
-            this.propiedades.push(propiedades[posicion]);
-            this.dinero -= propiedades[posicion].precio;
-            propiedades[posicion].disponible = false;
-        }
-    }
 }
 
 //Idea de como se forma una Propiedad
@@ -87,6 +71,20 @@ const cobrarAlquileres = {
                 jugador.dinero += 20;
             }
         })
+    }
+}
+
+const hacerBerrinchePor = {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
+        jugador.dinero += 10;
+        while (jugador.dinero < propiedadComprar.precio) {
+            jugador.dinero += 10;
+        }
+        if (jugador.dinero >= propiedadComprar.precio) {
+            jugador.propiedades.push(propiedadComprar);
+            jugador.dinero -= propiedadComprar.precio;
+            propiedadComprar.disponibilidad = false;
+        }
     }
 }
 
