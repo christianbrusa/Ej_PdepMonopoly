@@ -11,17 +11,6 @@ class Personaje {
         this.acciones = acciones;
     }
 
-    subastar(propiedad) {
-        let filtro = x => x.nombre === propiedad;
-        let posicion = _.findIndex(propiedades, filtro);
-        if ((this.tactica === "Oferente singular" || this.tactica === "Accionista") &&
-            (this.dinero >= propiedades[posicion].precio) && propiedades[posicion].disponible) {
-            this.propiedades.push(propiedades[posicion]);
-            this.dinero -= propiedades[posicion].precio;
-            propiedades[posicion].disponible = false;
-        }
-    }
-
     cobrarAlquileres() {
         this.propiedades.forEach(prop => {
             if (prop.precio < 150) {
@@ -79,6 +68,17 @@ const pagarAAccionistas = {
             jugador.dinero += 200;
         } else {
             jugador.dinero -= 100;
+        }
+    }
+}
+
+const subastar = {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
+        if ((jugador.tactica === "Oferente singular" || jugador.tactica === "Accionista") &&
+            (jugador.dinero >= propiedadSubastar.precio) && (propiedadSubastar.disponibilidad)) {
+            jugador.propiedades.push(propiedadSubastar);
+            jugador.dinero -= propiedadSubastar.precio;
+            propiedadSubastar.disponibilidad = false;
         }
     }
 }
