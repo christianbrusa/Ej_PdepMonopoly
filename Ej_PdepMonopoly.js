@@ -11,16 +11,6 @@ class Personaje {
         this.acciones = acciones;
     }
 
-    cobrarAlquileres() {
-        this.propiedades.forEach(prop => {
-            if (prop.precio < 150) {
-                this.dinero += 10;
-            } else {
-                this.dinero += 20;
-            }
-        })
-    }
-
     hacerBerrinchePor(propiedad) {
         this.dinero += 10;
         this.gritar();
@@ -45,6 +35,10 @@ class Propiedad {
         this.nombre = nombre;
         this.precio = precio;
         this.disponibilidad = disponibilidad;
+    }
+
+    esBarata(propiedad) {
+        return propiedad.precio < 150;
     }
 }
 
@@ -80,6 +74,19 @@ const subastar = {
             jugador.dinero -= propiedadSubastar.precio;
             propiedadSubastar.disponibilidad = false;
         }
+    }
+}
+
+/*Delegar una función que defina si la propiedad es barata o no y usarla aqui*/
+const cobrarAlquileres = {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
+        jugador.propiedades.forEach(prop => {
+            if (jugador.propiedades.esBarata) {
+                jugador.dinero += 10;
+            } else {
+                jugador.dinero += 20;
+            }
+        })
     }
 }
 
