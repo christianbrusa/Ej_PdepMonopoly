@@ -73,6 +73,16 @@ const gritar = {
     }
 }
 
+const pagarAAccionistas = {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
+        if (jugador.tactica === "Accionista") {
+            jugador.dinero += 200;
+        } else {
+            jugador.dinero -= 100;
+        }
+    }
+}
+
 //Creando personajes
 const jugador1 = new Personaje("Carolina", 500, "Accionista", [], []);
 const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
