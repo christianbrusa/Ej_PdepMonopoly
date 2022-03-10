@@ -108,28 +108,8 @@ const propiedad12 = new Propiedad("Avenida Pensylvania", 320, true);
 const propiedad13 = new Propiedad("Plaza Park", 350, true);
 const propiedad14 = new Propiedad("El Muelle", 400, true);
 
-function últimaRonda(jugador1, jugador2) {
-    jugador1.acciones();
-    jugador1.subastar("El Muelle");
-    jugador1.subastar("Avenida Vermont");
-    jugador1.pasarPorElBanco();
-    jugador1.cobrarAlquileres();
-    jugador1.hacerBerrinchePor("Avenida Pensylvania");
-
-    jugador2.acciones();
-    jugador2.subastar("Avenida Indiana");
-    jugador2.subastar("Avenida Vermont");
-    jugador2.pasarPorElBanco();
-    jugador2.cobrarAlquileres();
-    jugador2.hacerBerrinchePor("Plaza Park");
-
-    console.log(jugador1);
-    console.log(jugador2);
-
-    if (jugador1.dinero > jugador2.dinero) {
-        return jugador1.nombre;
-    } else {
-        return jugador2.nombre;
-    }
+/*Polimorfismo: Cada objeto recibe un mismo mensaje (mismo nombre de método y mismos parametros)
+Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
+function últimaRonda(jugador) {
+    return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedad12, propiedad13));
 }
-últimaRonda(jugador1, jugador2);
