@@ -1,5 +1,4 @@
 const _ = require("lodash");
-const propiedades = require("./propiedades");
 
 //Idea de como se forma un Personaje
 class Personaje {
@@ -60,10 +59,35 @@ class Personaje {
     }
 }
 
+//Idea de como se forma una Propiedad
+class Propiedad {
+    //Metodo constructor
+    constructor(nombre, precio, disponibilidad) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.disponibilidad = disponibilidad;
+    }
+}
+
 //Creando personajes
 const jugador1 = new Personaje("Carolina", 500, "Accionista", [], []);
 const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
 
+//Creando propiedades
+const propiedad1 = new Propiedad("Avenida Mediterráneo", 60, true);
+const propiedad2 = new Propiedad("Avenida Báltica", 60, true);
+const propiedad3 = new Propiedad("Avenida Oriental", 100, true);
+const propiedad4 = new Propiedad("Avenida Vermont", 100, true);
+const propiedad5 = new Propiedad("Plaza San Carlos", 140, true);
+const propiedad6 = new Propiedad("Avenida Estados", 140, true);
+const propiedad7 = new Propiedad("Plaza Santiago", 180, true);
+const propiedad8 = new Propiedad("Avenida Nueva York", 200, true);
+const propiedad9 = new Propiedad("Avenida Kentucky", 220, true);
+const propiedad10 = new Propiedad("Avenida Indiana", 220, true);
+const propiedad11 = new Propiedad("Avenida Pacifico", 300, true);
+const propiedad12 = new Propiedad("Avenida Pensylvania", 320, true);
+const propiedad13 = new Propiedad("Plaza Park", 350, true);
+const propiedad14 = new Propiedad("El Muelle", 400, true);
 
 function últimaRonda(jugador1, jugador2) {
     jugador1.acciones();
