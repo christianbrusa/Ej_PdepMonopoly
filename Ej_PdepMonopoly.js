@@ -11,11 +11,6 @@ class Personaje {
         this.acciones = acciones;
     }
 
-    gritar() {
-        let nuevoNombre = "AHHHH" + this.nombre;
-        this.nombre = nuevoNombre;
-    }
-
     subastar(propiedad) {
         let filtro = x => x.nombre === propiedad;
         let posicion = _.findIndex(propiedades, filtro);
@@ -69,6 +64,12 @@ const pasarPorElBanco = {
     ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
         jugador.dinero += 40;
         jugador.tactica = "Comprador compulsivo";
+    }
+}
+
+const gritar = {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
+        jugador.nombre = "AHHHH" + jugador.nombre;
     }
 }
 
