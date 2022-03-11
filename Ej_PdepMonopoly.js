@@ -1,4 +1,7 @@
 const _ = require("lodash");
+const limitePropiedadBarata = 150;
+const gananciaPropiedadBarata = 10;
+const gananciaPropiedadCara = 20;
 
 //Idea de como se forma un Personaje
 class Personaje {
@@ -22,7 +25,7 @@ class Propiedad {
     }
 
     esBarata(propiedad) {
-        return propiedad.precio < 150;
+        return propiedad.precio < limitePropiedadBarata;
     }
 }
 
@@ -65,10 +68,10 @@ const subastar = {
 const cobrarAlquileres = {
     ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         jugador.propiedades.forEach(prop => {
-            if (jugador.propiedades.esBarata) {
-                jugador.dinero += 10;
+            if (prop.esBarata(prop)) {
+                jugador.dinero += gananciaPropiedadBarata;
             } else {
-                jugador.dinero += 20;
+                jugador.dinero += gananciaPropiedadCara;
             }
         })
     }
@@ -88,10 +91,6 @@ const hacerBerrinchePor = {
     }
 }
 
-//Creando personajes
-const jugador1 = new Personaje("Carolina", 500, "Accionista", [], []);
-const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
-
 //Creando propiedades
 const propiedad1 = new Propiedad("Avenida Mediterráneo", 60, true);
 const propiedad2 = new Propiedad("Avenida Báltica", 60, true);
@@ -108,6 +107,10 @@ const propiedad12 = new Propiedad("Avenida Pensylvania", 320, true);
 const propiedad13 = new Propiedad("Plaza Park", 350, true);
 const propiedad14 = new Propiedad("El Muelle", 400, true);
 
+//Creando personajes
+const jugador1 = new Personaje("Carolina", 500, "Accionista", [], []);
+const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
+
 /*Polimorfismo: Cada objeto recibe un mismo mensaje (mismo nombre de método y mismos parametros)
 Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
 function últimaRonda(jugador) {
@@ -115,8 +118,8 @@ function últimaRonda(jugador) {
 }
 
 function juegoFinal(jugador1, jugador2) {
-    ultimaRonda(jugador1);
-    ultimaRonda(jugador2);
+    últimaRonda(jugador1);
+    últimaRonda(jugador2);
     if (jugador1.dinero > jugador2.dinero) {
         return jugador1;
     } else {
