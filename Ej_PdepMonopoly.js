@@ -31,22 +31,30 @@ class Propiedad {
 
 //Modelando las diferentes acciones
 const pasarPorElBanco = {
-    cantidadDeRetiros: 2,
     valorFijoPorRetirar: 40,
-    ejecutar: function(jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) {
-        jugador.dinero += ((this.valorFijoPorRetirar + valorPorRetirar) / this.cantidadDeRetiros);
+    ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
+        jugador.dinero += this.valorFijoPorRetirar;
         jugador.tactica = "Comprador compulsivo";
     }
 }
 
 const gritar = {
-    ejecutar: (jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) => {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         jugador.nombre = "AHHHH" + jugador.nombre;
     }
 }
 
+const enojarse = {
+    valorFijoSumar: 50,
+    ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
+        jugador.dinero += this.valorFijoSumar;
+        jugador.acciones.push(gritar);
+        gritar.ejecutar(jugador);
+    }
+}
+
 const pagarAAccionistas = {
-    ejecutar: (jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) => {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         if (jugador.tactica === "Accionista") {
             jugador.dinero += 200;
         } else {
@@ -56,7 +64,7 @@ const pagarAAccionistas = {
 }
 
 const subastar = {
-    ejecutar: (jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) => {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         if ((jugador.tactica === "Oferente singular" || jugador.tactica === "Accionista") &&
             (jugador.dinero >= propiedadSubastar.precio) && (propiedadSubastar.disponibilidad)) {
             jugador.propiedades.push(propiedadSubastar);
@@ -68,7 +76,7 @@ const subastar = {
 
 /*Delegar una función que defina si la propiedad es barata o no y usarla aqui*/
 const cobrarAlquileres = {
-    ejecutar: (jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) => {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         jugador.propiedades.forEach(prop => {
             if (prop.esBarata(prop)) {
                 jugador.dinero += gananciaPropiedadBarata;
@@ -80,7 +88,7 @@ const cobrarAlquileres = {
 }
 
 const hacerBerrinchePor = {
-    ejecutar: (jugador, propiedadSubastar, propiedadComprar, valorPorRetirar) => {
+    ejecutar: (jugador, propiedadSubastar, propiedadComprar) => {
         jugador.dinero += 10;
         while (jugador.dinero < propiedadComprar.precio) {
             jugador.dinero += 10;
@@ -110,13 +118,13 @@ const propiedad13 = new Propiedad("Plaza Park", 350, true);
 const propiedad14 = new Propiedad("El Muelle", 400, true);
 
 //Creando personajes
-const jugador1 = new Personaje("Carolina", 500, "Accionista", [propiedad2, propiedad13], [pasarPorElBanco, pasarPorElBanco]);
+const jugador1 = new Personaje("Carolina", 500, "Accionista", [propiedad2, propiedad13], [pasarPorElBanco, enojarse]);
 const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [propiedad1, propiedad4], [cobrarAlquileres]);
 
 /*Polimorfismo: Cada objeto recibe un mismo mensaje (mismo nombre de método y mismos parametros)
 Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
 function últimaRonda(jugador) {
-    return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedad12, propiedad13,100));
+    return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedad12, propiedad13));
 }
 
 function juegoFinal(jugador1, jugador2) {
@@ -128,4 +136,5 @@ function juegoFinal(jugador1, jugador2) {
         return jugador2;
     }
 }
+
 juegoFinal(jugador1, jugador2);
