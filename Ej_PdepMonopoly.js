@@ -48,7 +48,7 @@ const enojarse = {
     valorFijoSumar: 50,
     ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
         jugador.dinero += this.valorFijoSumar;
-        jugador.acciones.push(gritar);
+        //jugador.acciones.push(gritar);
         gritar.ejecutar(jugador);
     }
 }
@@ -118,8 +118,8 @@ const propiedad13 = new Propiedad("Plaza Park", 350, true);
 const propiedad14 = new Propiedad("El Muelle", 400, true);
 
 //Creando personajes
-const jugador1 = new Personaje("Carolina", 500, "Accionista", [propiedad2, propiedad13], [pasarPorElBanco, enojarse]);
-const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [propiedad1, propiedad4], [cobrarAlquileres]);
+const jugador1 = new Personaje("Carolina", 500, "Accionista", [], []);
+const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
 
 /*Polimorfismo: Cada objeto recibe un mismo mensaje (mismo nombre de método y mismos parametros)
 Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
@@ -138,3 +138,16 @@ function juegoFinal(jugador1, jugador2) {
 }
 
 juegoFinal(jugador1, jugador2);
+
+module.exports = {
+    Personaje,
+    Propiedad,
+    pasarPorElBanco,
+    gritar,
+    enojarse,
+    pagarAAccionistas,
+    subastar,
+    cobrarAlquileres,
+    hacerBerrinchePor,
+    últimaRonda
+};
