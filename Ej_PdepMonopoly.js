@@ -123,8 +123,8 @@ const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], []);
 
 /*Polimorfismo: Cada objeto recibe un mismo mensaje (mismo nombre de método y mismos parametros)
 Se aplica polimorfismo ya que todas las acciones entienden ejecutar*/
-function últimaRonda(jugador) {
-    return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedad12, propiedad13));
+function últimaRonda(jugador, propiedadSubastar, propiedadComprar) {
+    return jugador.acciones.forEach(x => x.ejecutar(jugador, propiedadSubastar, propiedadComprar));
 }
 
 function juegoFinal(jugador1, jugador2) {
