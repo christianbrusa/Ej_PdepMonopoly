@@ -128,8 +128,6 @@ function últimaRonda(jugador, propiedadSubastar, propiedadComprar) {
 }
 
 function juegoFinal(jugador1, jugador2) {
-    últimaRonda(jugador1);
-    últimaRonda(jugador2);
     if (jugador1.dinero > jugador2.dinero) {
         return jugador1;
     } else {
@@ -149,5 +147,6 @@ module.exports = {
     subastar,
     cobrarAlquileres,
     hacerBerrinchePor,
-    últimaRonda
+    últimaRonda,
+    juegoFinal
 };
