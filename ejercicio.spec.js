@@ -89,6 +89,31 @@ describe("enojarse()", () => {
 });
 
 
+describe("pagarAAccionistas()", () => {
+    it("Deberia aumentar $200 si la tactica del jugador es 'Accionista' y sino restar $100", () => {
+        if (jugador1.acciones.includes(pagarAAccionistas) && jugador1.acciones.includes(pasarPorElBanco)) {
+            pagarAAccionistas.ejecutar(jugador1);
+            should(jugador1).match({
+                nombre: "Carolina",
+                dinero: 440,
+                tactica: "Comprador compulsivo",
+                propiedades: [],
+                acciones: []
+            })
+        } else if (jugador1.acciones.includes(pagarAAccionistas) && !(jugador1.acciones.includes(pasarPorElBanco))) {
+            pagarAAccionistas.ejecutar(jugador1);
+            should(jugador1).match({
+                nombre: "Carolina",
+                dinero: 700,
+                tactica: "Accionista",
+                propiedades: [],
+                acciones: []
+            })
+        }
+    });
+});
+
+
 describe("ÚltimaRonda()", () => {
     describe("Ejecuta las acciones para cada jugador y lo retorna con los cambios", () => {
 
