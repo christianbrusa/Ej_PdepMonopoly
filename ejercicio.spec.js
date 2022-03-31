@@ -165,6 +165,58 @@ describe("subastar()", () => {
     });
 });
 
+//Deberia cobrar el alquiler de la propiedad1 para el jugador1 y el alquiler de la propiedad5 para el jugador2
+describe("cobrarAlquileres()", () => {
+    it("Deberia cobrar $10 para las propiedades baratas de cada jugador y $20 para las propiedades caras", () => {
+        if(jugador1.propiedades.length == 0) {
+            cobrarAlquileres.ejecutar(jugador1);
+            should(jugador1).match({
+                nombre: "Carolina",
+                dinero: 440,
+                tactica: "Comprador compulsivo",
+                propiedades: [],
+                acciones: []
+            })
+        } else {
+            cobrarAlquileres.ejecutar(jugador1);
+            should(jugador1).match({
+                nombre: "Carolina",
+                dinero: 650,
+                tactica: "Accionista",
+                propiedades: [{
+                    nombre: "Avenida Mediterráneo",
+                    precio: 60,
+                    disponibilidad: false
+                }],
+                acciones: []
+            })
+        }
+        if(jugador2.propiedades.length == 0) {
+            cobrarAlquileres.ejecutar(jugador2);
+            should(jugador2).match({
+                nombre: "AHHHHManuel",
+                dinero: 590,
+                tactica: "Comprador compulsivo",
+                propiedades: [],
+                acciones: []
+            })
+        } else {
+            cobrarAlquileres.ejecutar(jugador2);
+            should(jugador2).match({
+                nombre: "AHHHHManuel",
+                dinero: 420,
+                tactica: "Oferente singular",
+                propiedades: [{
+                    nombre: "Plaza San Carlos",
+                    precio: 140,
+                    disponibilidad: false
+                }],
+                acciones: []
+            })
+        }
+    });
+});
+
 
 describe("ÚltimaRonda()", () => {
     describe("Ejecuta las acciones para cada jugador y lo retorna con los cambios", () => {
