@@ -85,17 +85,17 @@ describe("subastar()", () => {
 
 describe("cobrarAlquileres()", () => {
     it("Deberia cobrar $10 para las propiedades baratas de cada jugador y $20 para las propiedades caras", () => {
-        const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [propiedad1,propiedad12], [cobrarAlquileres]);
+        const jugador2 = new Personaje("Manuel", 500, "Oferente singular", [propiedad1, propiedad12], [cobrarAlquileres]);
         cobrarAlquileres.ejecutar(jugador2);
-        jugador2.should.be.eql(new Personaje("Manuel", 530, "Oferente singular", [propiedad1,propiedad12], [cobrarAlquileres]))
+        jugador2.should.be.eql(new Personaje("Manuel", 530, "Oferente singular", [propiedad1, propiedad12], [cobrarAlquileres]))
     });
 });
 
 
 describe("hacerBerrinchePor()", () => {
-    it.only("Deberia sumar $10 e intentar comprar la propiedad que desea. En caso que no llegue con el dinero, suma $10 hasta que pueda comprar la misma", () => {
+    it("Deberia sumar $10 e intentar comprar la propiedad que desea. En caso que no llegue con el dinero, suma $10 hasta que pueda comprar la misma", () => {
         const jugador1 = new Personaje("Carolina", 100, "Accionista", [propiedad4], [hacerBerrinchePor]);
-        hacerBerrinchePor.ejecutar(jugador1,propiedad1,propiedad11);
+        hacerBerrinchePor.ejecutar(jugador1, propiedad1, propiedad11);
         jugador1.should.be.eql(new Personaje("Carolina", 0, "Accionista", [propiedad4, propiedad11], [hacerBerrinchePor]))
     });
 });
