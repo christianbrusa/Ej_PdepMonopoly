@@ -35,31 +35,12 @@ const propiedad14 = new Propiedad("El Muelle", 400, true);
 describe("pasarPorElBanco()", () => {
 
     beforeEach(function() {
-        jugador1 = new Personaje("Carolina", 500, "Accionista", [], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]);
-        jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor]);
+        jugador1 = new Personaje("Carolina", 500, "Accionista", [], [pasarPorElBanco]);
     })
 
-    it("Deberia aumentar $40 y cambiar la tactica del jugador", () => {
-        if (jugador1.acciones.includes(pasarPorElBanco)) {
-            pasarPorElBanco.ejecutar(jugador1)
-            jugador1.should.match({
-                nombre: "Carolina",
-                dinero: 540,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        }
-        if (jugador2.acciones.includes(pasarPorElBanco)) {
-            pasarPorElBanco.ejecutar(jugador2)
-            jugador2.should.match({
-                nombre: "Manuel",
-                dinero: 540,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        }
+    it("Deberia aumentar $40 y cambiar la tactica del jugador a 'Comprador compulsivo'", () => {
+        pasarPorElBanco.ejecutar(jugador1);
+        jugador1.should.be.eql(new Personaje("Carolina", 540, "Comprador compulsivo", [], [pasarPorElBanco]))
     });
 });
 
