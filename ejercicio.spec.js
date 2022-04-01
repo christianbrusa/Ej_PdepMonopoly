@@ -76,52 +76,9 @@ describe("pagarAAccionistas()", () => {
 
 describe("subastar()", () => {
     it("Deberia permitir comprar una propiedad para los jugadores con tactica 'Accionista' o 'Comprador compulsivo'", () => {
-        if (jugador1.acciones.includes(pasarPorElBanco) && jugador1.acciones.includes(pagarAAccionistas) && jugador1.acciones.includes(subastar)) {
-            subastar.ejecutar(jugador1, propiedad1);
-            should(jugador1).match({
-                nombre: "Carolina",
-                dinero: 440,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        } else if (!(jugador1.acciones.includes(pasarPorElBanco)) && jugador1.acciones.includes(pagarAAccionistas) && jugador1.acciones.includes(subastar)) {
-            subastar.ejecutar(jugador1, propiedad1);
-            should(jugador1).match({
-                nombre: "Carolina",
-                dinero: 640,
-                tactica: "Accionista",
-                propiedades: [{
-                    nombre: "Avenida Mediterráneo",
-                    precio: 60,
-                    disponibilidad: false
-                }],
-                acciones: []
-            })
-        }
-        if (jugador2.acciones.includes(pasarPorElBanco) && jugador2.acciones.includes(enojarse) && jugador2.acciones.includes(subastar)) {
-            subastar.ejecutar(jugador2, propiedad5);
-            should(jugador2).match({
-                nombre: "AHHHHManuel",
-                dinero: 590,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        } else if (!(jugador2.acciones.includes(pasarPorElBanco)) && jugador2.acciones.includes(enojarse) && jugador2.acciones.includes(subastar)) {
-            subastar.ejecutar(jugador2, propiedad5);
-            should(jugador2).match({
-                nombre: "AHHHHManuel",
-                dinero: 410,
-                tactica: "Oferente singular",
-                propiedades: [{
-                    nombre: "Plaza San Carlos",
-                    precio: 140,
-                    disponibilidad: false
-                }],
-                acciones: []
-            })
-        }
+        const jugador1 = new Personaje("Carolina", 500, "Accionista", [], [subastar]);
+        subastar.ejecutar(jugador1, propiedad1);
+        jugador1.should.be.eql(new Personaje("Carolina", 440, "Accionista", [propiedad1], [subastar]))
     });
 });
 
