@@ -46,26 +46,14 @@ describe("pasarPorElBanco()", () => {
 
 
 describe("enojarse()", () => {
-    it("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
-        if (jugador2.acciones.includes(enojarse) && jugador2.acciones.includes(pasarPorElBanco)) {
-            enojarse.ejecutar(jugador2)
-            should(jugador2).match({
-                nombre: "AHHHHManuel",
-                dinero: 590,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        } else if (jugador2.acciones.includes(enojarse) && !(jugador2.acciones.includes(pasarPorElBanco))) {
-            enojarse.ejecutar(jugador2)
-            should(jugador2).match({
-                nombre: "AHHHHManuel",
-                dinero: 550,
-                tactica: "Oferente singular",
-                propiedades: [],
-                acciones: []
-            })
-        }
+    
+    beforeEach(function() {
+        jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [enojarse]);
+    })
+
+    it.only("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
+        enojarse.ejecutar(jugador2)
+        jugador2.should.be.eql(new Personaje("AHHHHManuel", 550, "Oferente singular", [], [enojarse]))
     });
 });
 
