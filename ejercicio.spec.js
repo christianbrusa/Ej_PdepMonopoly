@@ -46,12 +46,12 @@ describe("pasarPorElBanco()", () => {
 
 
 describe("enojarse()", () => {
-    
+
     beforeEach(function() {
         jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [enojarse]);
     })
 
-    it.only("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
+    it("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
         enojarse.ejecutar(jugador2)
         jugador2.should.be.eql(new Personaje("AHHHHManuel", 550, "Oferente singular", [], [enojarse]))
     });
@@ -59,26 +59,17 @@ describe("enojarse()", () => {
 
 
 describe("pagarAAccionistas()", () => {
-    it("Deberia aumentar $200 si la tactica del jugador es 'Accionista' y sino restar $100", () => {
-        if (jugador1.acciones.includes(pagarAAccionistas) && jugador1.acciones.includes(pasarPorElBanco)) {
-            pagarAAccionistas.ejecutar(jugador1);
-            should(jugador1).match({
-                nombre: "Carolina",
-                dinero: 440,
-                tactica: "Comprador compulsivo",
-                propiedades: [],
-                acciones: []
-            })
-        } else if (jugador1.acciones.includes(pagarAAccionistas) && !(jugador1.acciones.includes(pasarPorElBanco))) {
-            pagarAAccionistas.ejecutar(jugador1);
-            should(jugador1).match({
-                nombre: "Carolina",
-                dinero: 700,
-                tactica: "Accionista",
-                propiedades: [],
-                acciones: []
-            })
-        }
+
+    it("Deberia aumentar $200 si la tactica del jugador es 'Accionista'", () => {
+        const jugador1 = new Personaje("Carolina", 500, "Accionista", [], [pagarAAccionistas]);
+        pagarAAccionistas.ejecutar(jugador1);
+        jugador1.should.be.eql(new Personaje("Carolina", 700, "Accionista", [], [pagarAAccionistas]))
+    });
+
+    it("Deberia restar $100 si la tactica del jugador NO es 'Accionista'", () => {
+        const jugador1 = new Personaje("Carolina", 500, "Comprador compulsivo", [], [pagarAAccionistas]);
+        pagarAAccionistas.ejecutar(jugador1);
+        jugador1.should.be.eql(new Personaje("Carolina", 400, "Comprador compulsivo", [], [pagarAAccionistas]))
     });
 });
 
@@ -137,7 +128,7 @@ describe("subastar()", () => {
 //Deberia cobrar el alquiler de la propiedad1 para el jugador1 y el alquiler de la propiedad5 para el jugador2
 describe("cobrarAlquileres()", () => {
     it("Deberia cobrar $10 para las propiedades baratas de cada jugador y $20 para las propiedades caras", () => {
-        if(jugador1.propiedades.length == 0) {
+        if (jugador1.propiedades.length == 0) {
             cobrarAlquileres.ejecutar(jugador1);
             should(jugador1).match({
                 nombre: "Carolina",
@@ -160,7 +151,7 @@ describe("cobrarAlquileres()", () => {
                 acciones: []
             })
         }
-        if(jugador2.propiedades.length == 0) {
+        if (jugador2.propiedades.length == 0) {
             cobrarAlquileres.ejecutar(jugador2);
             should(jugador2).match({
                 nombre: "AHHHHManuel",
