@@ -48,7 +48,7 @@ const enojarse = {
     valorFijoSumar: 50,
     ejecutar: function(jugador, propiedadSubastar, propiedadComprar) {
         jugador.dinero += this.valorFijoSumar;
-        //jugador.acciones.push(gritar);
+        jugador.acciones.push(gritar);
         gritar.ejecutar(jugador);
     }
 }
