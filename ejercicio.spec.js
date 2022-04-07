@@ -51,9 +51,9 @@ describe("enojarse()", () => {
         jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [enojarse]);
     })
 
-    it.only("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
+    it("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
         enojarse.ejecutar(jugador2)
-        jugador2.should.be.eql(new Personaje("AHHHHManuel", 550, "Oferente singular", [], [enojarse,gritar]))
+        jugador2.should.be.eql(new Personaje("AHHHHManuel", 550, "Oferente singular", [], [enojarse, gritar]))
     });
 });
 
@@ -112,96 +112,24 @@ describe("ÚltimaRonda()", () => {
         describe('Ej: Carolina: "Avenida Mediterráneo" y "Avenida Estados" - Manuel: "Plaza San Carlos" y "Avenida Indiana"', () => {
             it('Debería retornar: {nombre: "Carolina", dinero: 310, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Estados", precio: 140, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad1, propiedad6);
-                jugador1.should.match({
-                    nombre: "Carolina",
-                    dinero: 310,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Estados",
-                        precio: 140,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                jugador1.should.be.eql(new Personaje("Carolina", 310, "Comprador compulsivo", [propiedad6], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
             });
 
             it('Debería retornar: {nombre: "Manuel", dinero: 230, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Indiana", precio: 220, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador2, propiedad5, propiedad10);
-                jugador2.should.match({
-                    nombre: "AHHHHManuel",
-                    dinero: 380,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Indiana",
-                        precio: 220,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                jugador2.should.be.eql(new Personaje("AHHHHManuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
 
         describe('Ej: Carolina: "Plaza Santiago" y "Plaza Park" - Manuel: "El Muelle" y "Avenida Báltica"', () => {
             it('Debería retornar: {nombre: "Carolina", dinero: 100, tactica: "Comprador compulsivo", propiedades: [{nombre: "Plaza Park", precio: 350, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad7, propiedad13);
-                jugador1.should.match({
-                    nombre: "Carolina",
-                    dinero: 100,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Plaza Park",
-                        precio: 350,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                jugador1.should.be.eql(new Personaje("Carolina", 100, "Comprador compulsivo", [propiedad13], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
             });
 
             it('Debería retornar: {nombre: "Manuel", dinero: 400, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Nueva York", precio: 200, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador2, propiedad14, propiedad8);
-                jugador2.should.match({
-                    nombre: "AHHHHManuel",
-                    dinero: 400,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Nueva York",
-                        precio: 200,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
-            });
-        });
-
-        describe('Ej: Carolina: "Plaza San Carlos" y "Avenida Mediterráneo" - Manuel: "Avenida Vermont" y "Avenida Pensylvania"', () => {
-            it('Debería retornar: {nombre: "Carolina", dinero: 390, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Mediterráneo", precio: 60, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador1, propiedad5, propiedad1);
-                jugador1.should.match({
-                    nombre: "Carolina",
-                    dinero: 390,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Mediterráneo",
-                        precio: 60,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
-            });
-
-            it('Debería retornar: {nombre: "Manuel", dinero: 280, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Pensylvania", precio: 320, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador2, propiedad4, propiedad12);
-                jugador2.should.match({
-                    nombre: "AHHHHManuel",
-                    dinero: 280,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Pensylvania",
-                        precio: 320,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                jugador2.should.be.eql(new Personaje("AHHHHManuel", 400, "Comprador compulsivo", [propiedad8], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
     });
@@ -220,17 +148,7 @@ describe("juegoFinal()", () => {
             it('Debería retornar: {nombre: "AHHHHManuel", dinero: 380, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Indiana", precio: 220, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad1, propiedad6);
                 últimaRonda(jugador2, propiedad5, propiedad10);
-                juegoFinal(jugador1, jugador2).should.match({
-                    nombre: "AHHHHManuel",
-                    dinero: 380,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Indiana",
-                        precio: 220,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("AHHHHManuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
 
@@ -238,35 +156,7 @@ describe("juegoFinal()", () => {
             it('Debería retornar: {nombre: "AHHHHManuel", dinero: 400, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Nueva York", precio: 200, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad7, propiedad13);
                 últimaRonda(jugador2, propiedad14, propiedad8);
-                juegoFinal(jugador1, jugador2).should.match({
-                    nombre: "AHHHHManuel",
-                    dinero: 400,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Nueva York",
-                        precio: 200,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
-            });
-        });
-
-        describe('Ej: Carolina: "Plaza San Carlos" y "Avenida Mediterráneo" - Manuel: "Avenida Vermont" y "Avenida Pensylvania"', () => {
-            it('Debería retornar: {nombre: "Carolina", dinero: 390, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Mediterráneo", precio: 60, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador1, propiedad5, propiedad1);
-                últimaRonda(jugador2, propiedad4, propiedad12);
-                juegoFinal(jugador1, jugador2).should.match({
-                    nombre: "Carolina",
-                    dinero: 390,
-                    tactica: "Comprador compulsivo",
-                    propiedades: [{
-                        nombre: "Avenida Mediterráneo",
-                        precio: 60,
-                        disponibilidad: false
-                    }],
-                    acciones: []
-                })
+                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("AHHHHManuel", 400, "Comprador compulsivo", [propiedad8], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
     });
