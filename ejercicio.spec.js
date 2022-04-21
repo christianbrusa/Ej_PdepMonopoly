@@ -123,6 +123,12 @@ describe("ÚltimaRonda()", () => {
             últimaRonda(jugador2, propiedad5, propiedad10);
             jugador2.should.be.eql(new Personaje("Manuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
         });
+
+        it('Deberia retornar el jugador sin cambios en caso que el mismo no tenga acciones', () => {
+            const jugador1 = new Personaje("Carolina", 200, "Accionista", [], []);
+            últimaRonda(jugador1, propiedad1, propiedad6);
+            jugador1.should.be.eql(new Personaje("Carolina", 200, "Accionista", [], []))
+        });
     });
 });
 
