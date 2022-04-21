@@ -134,7 +134,7 @@ describe("ÚltimaRonda()", () => {
 
 
 describe("juegoFinal()", () => {
-    describe("Devuelve como ganador al jugador con mas dinero", () => {
+    describe("Carolina vs Manuel - Quien gane el juego será aquel jugador que luego de ejecutada sus acciones, tenga mas dinero", () => {
 
         beforeEach(function() {
             jugador1 = new Personaje("Carolina", 500, "Accionista", [], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]);
@@ -142,18 +142,18 @@ describe("juegoFinal()", () => {
         })
 
         describe('Ej: Carolina: "Avenida Mediterráneo" y "Avenida Estados" - Manuel: "Plaza San Carlos" y "Avenida Indiana"', () => {
-            it('Debería retornar: {nombre: "AHHHHManuel", dinero: 380, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Indiana", precio: 220, disponibilidad: false}], acciones: []}', () => {
+            it('Debería retornar: {nombre: "Manuel", dinero: 380, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Indiana", precio: 220, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad1, propiedad6);
                 últimaRonda(jugador2, propiedad5, propiedad10);
-                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("AHHHHManuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
+                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("Manuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
 
         describe('Ej: Carolina: "Plaza Santiago" y "Plaza Park" - Manuel: "El Muelle" y "Avenida Báltica"', () => {
-            it('Debería retornar: {nombre: "AHHHHManuel", dinero: 400, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Nueva York", precio: 200, disponibilidad: false}], acciones: []}', () => {
+            it('Debería retornar: {nombre: "Manuel", dinero: 400, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Nueva York", precio: 200, disponibilidad: false}], acciones: []}', () => {
                 últimaRonda(jugador1, propiedad7, propiedad13);
                 últimaRonda(jugador2, propiedad14, propiedad8);
-                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("AHHHHManuel", 400, "Comprador compulsivo", [propiedad8], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
+                juegoFinal(jugador1, jugador2).should.be.eql(new Personaje("Manuel", 400, "Comprador compulsivo", [propiedad8], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
             });
         });
     });
