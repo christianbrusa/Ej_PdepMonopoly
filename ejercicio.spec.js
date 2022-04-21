@@ -102,35 +102,21 @@ describe("hacerBerrinchePor()", () => {
 
 
 describe("ÚltimaRonda()", () => {
-    describe("Ejecuta las acciones para cada jugador y lo retorna con los cambios", () => {
+    describe("Dado un participante, ejecuta todas sus acciones", () => {
 
         beforeEach(function() {
             jugador1 = new Personaje("Carolina", 500, "Accionista", [], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]);
             jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor]);
         })
 
-        describe('Ej: Carolina: "Avenida Mediterráneo" y "Avenida Estados" - Manuel: "Plaza San Carlos" y "Avenida Indiana"', () => {
-            it('Debería retornar: {nombre: "Carolina", dinero: 310, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Estados", precio: 140, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador1, propiedad1, propiedad6);
-                jugador1.should.be.eql(new Personaje("Carolina", 310, "Comprador compulsivo", [propiedad6], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
-            });
-
-            it('Debería retornar: {nombre: "Manuel", dinero: 230, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Indiana", precio: 220, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador2, propiedad5, propiedad10);
-                jugador2.should.be.eql(new Personaje("AHHHHManuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
-            });
+        it('Deberia retornar el resultado de la ejecución de todas las acciones para el jugador1', () => {
+            últimaRonda(jugador1, propiedad1, propiedad6);
+            jugador1.should.be.eql(new Personaje("Carolina", 310, "Comprador compulsivo", [propiedad6], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
         });
 
-        describe('Ej: Carolina: "Plaza Santiago" y "Plaza Park" - Manuel: "El Muelle" y "Avenida Báltica"', () => {
-            it('Debería retornar: {nombre: "Carolina", dinero: 100, tactica: "Comprador compulsivo", propiedades: [{nombre: "Plaza Park", precio: 350, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador1, propiedad7, propiedad13);
-                jugador1.should.be.eql(new Personaje("Carolina", 100, "Comprador compulsivo", [propiedad13], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
-            });
-
-            it('Debería retornar: {nombre: "Manuel", dinero: 400, tactica: "Comprador compulsivo", propiedades: [{nombre: "Avenida Nueva York", precio: 200, disponibilidad: false}], acciones: []}', () => {
-                últimaRonda(jugador2, propiedad14, propiedad8);
-                jugador2.should.be.eql(new Personaje("AHHHHManuel", 400, "Comprador compulsivo", [propiedad8], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
-            });
+        it('Deberia retornar el resultado de la ejecución de todas las acciones para el jugador2', () => {
+            últimaRonda(jugador2, propiedad5, propiedad10);
+            jugador2.should.be.eql(new Personaje("Manuel", 380, "Comprador compulsivo", [propiedad10], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar]))
         });
     });
 });
