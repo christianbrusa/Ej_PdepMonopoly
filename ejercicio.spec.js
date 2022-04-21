@@ -109,6 +109,11 @@ describe("ÚltimaRonda()", () => {
             jugador2 = new Personaje("Manuel", 500, "Oferente singular", [], [pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor]);
         })
 
+        it('Deberia agregar la acción gritar en caso que el jugador tenga la acción enojarse', () => {
+            últimaRonda(jugador2, propiedad5, propiedad10);
+            jugador2.acciones.should.be.eql([pasarPorElBanco, enojarse, subastar, cobrarAlquileres, hacerBerrinchePor, gritar])
+        });
+
         it('Deberia retornar el resultado de la ejecución de todas las acciones para el jugador1', () => {
             últimaRonda(jugador1, propiedad1, propiedad6);
             jugador1.should.be.eql(new Personaje("Carolina", 310, "Comprador compulsivo", [propiedad6], [pasarPorElBanco, pagarAAccionistas, subastar, cobrarAlquileres, hacerBerrinchePor]))
