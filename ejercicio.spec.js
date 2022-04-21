@@ -53,7 +53,7 @@ describe("enojarse()", () => {
 
     it("Deberia aumentar $50 y agregar gritar a sus acciones", () => {
         enojarse.ejecutar(jugador2)
-        jugador2.should.be.eql(new Personaje("AHHHHManuel", 550, "Oferente singular", [], [enojarse, gritar]))
+        jugador2.should.be.eql(new Personaje("Manuel", 550, "Oferente singular", [], [enojarse, gritar]))
     });
 });
 
